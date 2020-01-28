@@ -1,6 +1,8 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 import Friend from "./Friend";
+import EditFriend from "./EditFriend";
 
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
@@ -9,7 +11,9 @@ class FriendsList extends React.Component {
     super(props);
 
     this.state = {
-      data: []
+      data: [],
+      currentUser: "",
+      editing: false
     };
   }
 
@@ -18,22 +22,67 @@ class FriendsList extends React.Component {
       .get("/friends")
       .then(res => {
         this.setState({
+          ...this.state,
           data: res.data
         });
       })
       .catch(err => console.log(err));
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.currentUser !== this.state.currentUser) {
+      axiosWithAuth()
+        .get("/friends")
+        .then(res => {
+          this.setState({
+            ...this.state,
+            data: res.data
+          });
+        });
+    }
+  }
+
+  // set editing to true
+  userToEdit = user => {
+    this.setState({
+      ...this.state,
+      currentUser: user,
+      editing: true
+    });
+  };
+
+  setEditing = () => {
+    this.setState({
+      ...this.state,
+      currentUser: "",
+      editing: false
+    });
+  };
+
   render() {
     return (
-      <div className="friends-container">
-        {this.state.data.map(friend => {
-          return (
-            <div className="card" key={friend.id}>
-              <Friend key={friend.id} friend={friend} />
-            </div>
-          );
-        })}
+      <div>
+        {this.state.editing ? (
+          <EditFriend
+            currentUser={this.state.currentUser}
+            setEditing={this.setEditing}
+          />
+        ) : (
+          <div className="friends-container">
+            {this.state.data.map(friend => {
+              return (
+                <div className="card" key={friend.id}>
+                  <Friend
+                    key={friend.id}
+                    friend={friend}
+                    editing={this.state.editing}
+                    userToEdit={this.userToEdit}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     );
   }
