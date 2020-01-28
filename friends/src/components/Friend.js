@@ -13,7 +13,9 @@ class Friend extends React.Component {
         <button onClick={() => this.props.userToEdit(this.props.friend)}>
           Edit
         </button>
-        <button>Delete</button>
+        <button onClick={() => this.props.deleteFriend(this.props.friend.id)}>
+          Delete
+        </button>
       </>
     );
   }

@@ -59,6 +59,13 @@ class FriendsList extends React.Component {
     });
   };
 
+  deleteFriend = id => {
+    axiosWithAuth()
+      .delete(`/friends/${id}`)
+      .then(res => this.setState({ ...this.state, data: res.data }))
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
       <div>
@@ -77,6 +84,7 @@ class FriendsList extends React.Component {
                     friend={friend}
                     editing={this.state.editing}
                     userToEdit={this.userToEdit}
+                    deleteFriend={this.deleteFriend}
                   />
                 </div>
               );
