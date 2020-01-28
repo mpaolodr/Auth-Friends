@@ -6,7 +6,8 @@ class Header extends React.Component {
     return (
       <header>
         <nav>
-          <NavLink to="/login">Login</NavLink>
+          <NavLink to="/">Login</NavLink>
+          <NavLink to="/friendslist">Friends List</NavLink>
         </nav>
       </header>
     );
