@@ -1,0 +1,56 @@
+import React from "react";
+
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: "",
+      password: ""
+    };
+  }
+
+  // handle input changes
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      ...this.state,
+      [name]: value
+    });
+  };
+
+  // handle submit
+  handleSubmit = e => {
+    e.preventDefault();
+    // axiosWithAuth here
+    console.log(this.state);
+  };
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          value={this.state.username}
+          onChange={this.handleChange}
+        />
+
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          value={this.state.password}
+          onChange={this.handleChange}
+        />
+
+        <button type="submit">Log In</button>
+      </form>
+    );
+  }
+}
+
+export default Login;
