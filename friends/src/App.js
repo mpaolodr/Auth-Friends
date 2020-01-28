@@ -13,6 +13,7 @@ import Login from "./components/Login";
 import FriendsList from "./components/FriendsList";
 import PrivateRoute from "./components/PrivateRoute";
 import AddFriend from "./components/AddFriend";
+import Logout from "./components/Logout";
 
 function App() {
   const token = getToken();
@@ -24,6 +25,7 @@ function App() {
       <Switch>
         <PrivateRoute path="/friendslist" component={FriendsList} />
         <PrivateRoute path="/addfriend" component={AddFriend} />
+        <PrivateRoute path="/logout" component={Logout} />
         <Route path="/" component={Login} />
       </Switch>
     </div>

@@ -6,14 +6,15 @@ class Header extends React.Component {
     return (
       <header>
         <nav>
-          <NavLink to="/">Login</NavLink>
-
           {this.props.token ? (
             <>
               <NavLink to="/friendslist">Friends List</NavLink>
               <NavLink to="/addFriend">Add Friend</NavLink>
+              <NavLink to="/logout">Logout</NavLink>
             </>
-          ) : null}
+          ) : (
+            <NavLink to="/">Login</NavLink>
+          )}
         </nav>
       </header>
     );
