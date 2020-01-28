@@ -30,7 +30,7 @@ class Login extends React.Component {
       .post("/login", this.state)
       .then(res => {
         localStorage.setItem("token", res.data.payload);
-        console.log(this.props.history);
+        this.props.history.push("/friendslist");
         this.setState({
           username: "",
           password: ""
