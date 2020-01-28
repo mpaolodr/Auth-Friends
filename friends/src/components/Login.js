@@ -1,5 +1,8 @@
 import React from "react";
 
+// axios with auth
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -23,7 +26,17 @@ class Login extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     // axiosWithAuth here
-    console.log(this.state);
+    axiosWithAuth()
+      .post("/login", this.state)
+      .then(res => {
+        localStorage.setItem("token", res.data.payload);
+        console.log(this.props.history);
+        this.setState({
+          username: "",
+          password: ""
+        });
+      })
+      .catch(err => console.log(err));
   };
 
   render() {
