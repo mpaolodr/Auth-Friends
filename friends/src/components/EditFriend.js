@@ -39,30 +39,39 @@ class EditFriend extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={this.state.user.name}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="age">Age</label>
-        <input
-          type="number"
-          name="age"
-          id="age"
-          value={this.state.user.age}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={this.state.user.email}
-          onChange={this.handleChange}
-        />
+        <div className="ind-field">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value={this.state.user.name}
+            onChange={this.handleChange}
+          />
+        </div>
+
+        <div className="ind-field">
+          <label htmlFor="age">Age</label>
+          <input
+            type="number"
+            name="age"
+            id="age"
+            value={this.state.user.age}
+            onChange={this.handleChange}
+          />
+        </div>
+
+        <div className="ind-field">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={this.state.user.email}
+            onChange={this.handleChange}
+          />
+        </div>
+
         <button type="submit">Update</button>
       </form>
     );

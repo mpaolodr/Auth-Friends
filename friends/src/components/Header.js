@@ -13,7 +13,9 @@ class Header extends React.Component {
               <NavLink to="/logout">Logout</NavLink>
             </>
           ) : (
-            <NavLink to="/">Login</NavLink>
+            <NavLink to="/" className="login-link">
+              Login
+            </NavLink>
           )}
         </nav>
       </header>

@@ -8,7 +8,6 @@ class AddFriend extends React.Component {
 
     this.state = {
       user: {
-        id: null,
         name: "",
         age: "",
         email: ""
@@ -31,18 +30,12 @@ class AddFriend extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post("/friends", {
-        ...this.state.user,
-        id: `${Math.floor(Math.random() * 10)}${Math.floor(
-          Math.random() * 10
-        )}${Math.floor(Math.random() * 10)}`
-      })
+      .post("/friends", this.state.user)
 
       .then(res => {
         this.props.history.push("/friendslist");
         this.setState({
           user: {
-            id: null,
             name: "",
             age: "",
             email: ""
@@ -54,31 +47,40 @@ class AddFriend extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={this.state.user.name}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="age">Age</label>
-        <input
-          type="number"
-          name="age"
-          id="age"
-          value={this.state.user.age}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={this.state.user.email}
-          onChange={this.handleChange}
-        />
+      <form onSubmit={this.handleSubmit} className="add-form">
+        <div className="ind-field">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value={this.state.user.name}
+            onChange={this.handleChange}
+          />
+        </div>
+
+        <div className="ind-field">
+          <label htmlFor="age">Age</label>
+          <input
+            type="number"
+            name="age"
+            id="age"
+            value={this.state.user.age}
+            onChange={this.handleChange}
+          />
+        </div>
+
+        <div className="ind-field">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={this.state.user.email}
+            onChange={this.handleChange}
+          />
+        </div>
+
         <button type="submit">Add</button>
       </form>
     );

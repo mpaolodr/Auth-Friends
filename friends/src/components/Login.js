@@ -62,24 +62,28 @@ class Login extends React.Component {
       return this.state.isLoading ? (
         <h2>Loading</h2>
       ) : (
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            value={this.state.username}
-            onChange={this.handleChange}
-          />
+        <form onSubmit={this.handleSubmit} className="login-form">
+          <div className="ind-field">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              value={this.state.username}
+              onChange={this.handleChange}
+            />
+          </div>
 
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={this.state.password}
-            onChange={this.handleChange}
-          />
+          <div className="ind-field">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
+          </div>
 
           <button type="submit">Log In</button>
         </form>

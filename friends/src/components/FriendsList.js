@@ -68,14 +68,14 @@ class FriendsList extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="friends-container">
         {this.state.editing ? (
           <EditFriend
             currentUser={this.state.currentUser}
             setEditing={this.setEditing}
           />
         ) : (
-          <div className="friends-container">
+          <div className="card-container">
             {this.state.data.map(friend => {
               return (
                 <div className="card" key={friend.id}>
